@@ -2,17 +2,16 @@
 
 CLI for your personal Heptabase knowledge base. Search whiteboards, read cards/journals/PDFs, and write notes from the terminal.
 
+Ported from Official [Heptabase MCP](https://support.heptabase.com/en/articles/12679581-how-to-use-heptabase-mcp) via [MCP Porter](https://github.com/steipete/mcporter/).
+
+
 ## Install
 
 Pick one:
 
-### `bunx` (no install, requires [Bun](https://bun.sh/))
+### Option 1: Standalone binary (recommended)
 
-```bash
-bunx heptabase-cli --help
-```
-
-### Standalone binary (no Bun required)
+Recommended for most users and for agent integrations. After install, use `heptabase` for all commands.
 
 Current release binary target: macOS arm64.
 If you are on another platform, use `bunx` or build from source.
@@ -24,13 +23,23 @@ sudo mv heptabase /usr/local/bin/
 heptabase --help
 ```
 
-If you use AI agents (Claude Code, Cursor, Codex, etc.), install the skill metadata:
+### Option 2: `bunx` (no install, requires [Bun](https://bun.sh/))
+
+```bash
+bunx heptabase-cli --help
+```
+
+For agents, prefer installing `heptabase` on `PATH`.
+
+If you use AI agents (Claude Code, Codex, etc.), consider installing heptabase [heptabase agent skill](SKILL.md):
 
 ```bash
 npx skills add madeyexz/heptabase-cli
 ```
 
-## First Run
+Agent command convention: use `heptabase ...` (not `bunx heptabase-cli ...`).
+
+## Authentication (First Run)
 
 Run any command (examples below). The first run opens a browser for Heptabase OAuth.
 
