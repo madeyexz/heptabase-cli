@@ -69,59 +69,7 @@ heptabase get-pdf-pages --pdf-card-id <id> --start-page-number 1 --end-page-numb
 heptabase search-whiteboards --keywords "project" --output json
 ```
 
-## Letting Every Agent Use It
-
-### Claude Code
-
-```bash
-claude mcp add --transport http heptabase-mcp https://api.heptabase.com/mcp
-```
-
-### Cursor / Windsurf / VS Code
-
-Add to your MCP config (e.g. `~/.cursor/mcp.json`):
-
-```json
-{
-  "mcpServers": {
-    "heptabase-mcp": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote@latest", "https://api.heptabase.com/mcp", "--transport", "http-only"]
-    }
-  }
-}
-```
-
-### ChatGPT
-
-Requires a Personal Plus Plan or higher (Team Plans don't support MCP). Add via ChatGPT's MCP settings with the endpoint `https://api.heptabase.com/mcp`.
-
-### Codex / Any stdio-based MCP Client
-
-Same pattern as Cursor — use `mcp-remote` as the command:
-
-```json
-{
-  "mcpServers": {
-    "heptabase-mcp": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote@latest", "https://api.heptabase.com/mcp", "--transport", "http-only"]
-    }
-  }
-}
-```
-
-### Non-MCP Agents (via this CLI)
-
-For agents or scripts that can't speak MCP, use the compiled binary directly:
-
-```bash
-# Search from a shell script or agent
-heptabase semantic-search-objects --queries "quarterly review" --result-object-types card --output json
-
-# Pipe into other tools
-heptabase get-journal-range --start-date 2026-02-01 --end-date 2026-02-21 --output json | jq '.content'
-```
+For MCP setup with Claude Code, Cursor, ChatGPT, etc., see the [official Heptabase MCP docs](https://support.heptabase.com/en/articles/12679581-how-to-use-heptabase-mcp).
 
 ## Available Commands
 
