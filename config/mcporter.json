@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "heptabase": {
-      "description": "Heptabase knowledge base – read, search, and write notes",
+      "description": "Heptabase knowledge base CLI — semantic search across cards, journals, PDFs, and highlights; read full object content; explore whiteboards and connections; fetch journal entries by date range; create note cards; append to journals; search and extract PDF pages. Uses OAuth via mcp-remote.",
       "command": "npx",
       "args": ["-y", "mcp-remote@latest", "https://api.heptabase.com/mcp", "--transport", "http-only"]
     }
