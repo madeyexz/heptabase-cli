@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "heptabase": {
+      "description": "Heptabase knowledge base – read, search, and write notes",
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://api.heptabase.com/mcp", "--transport", "http-only"]
+    }
+  }
+}
