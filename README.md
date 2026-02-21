@@ -26,6 +26,18 @@ npx mcporter@latest generate-cli \
 
 ## Installation
 
+### As an Agent Skill
+
+Install as a skill for Claude Code, Cursor, Codex, and [other agents](https://skills.sh/docs):
+
+```bash
+npx skills add madeyexz/heptabase-cli
+```
+
+This makes `/heptabase-cli` available as a slash command in your agent.
+
+### Binary
+
 To run `heptabase` from anywhere, add it to your PATH:
 
 ```bash
@@ -91,6 +103,7 @@ For MCP setup with Claude Code, Cursor, ChatGPT, etc., see the [official Heptaba
 heptabase-cli/
 ├── heptabase          # Compiled standalone binary (bun)
 ├── heptabase-cli.ts   # Generated TypeScript source
+├── SKILL.md           # Agent skill definition (skills.sh)
 ├── config/
 │   └── mcporter.json  # mcporter server configuration
 └── README.md
