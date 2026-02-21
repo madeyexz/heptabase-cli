@@ -52,9 +52,11 @@ sudo mv heptabase /usr/local/bin/
 bunx heptabase-cli --help
 ```
 
+## Agent Setup
+
 For agents, prefer installing `heptabase` on `PATH`.
 
-If you use AI agents (Claude Code, Codex, etc.), consider installing heptabase [heptabase agent skill](SKILL.md):
+If you use AI agents (Claude Code, Codex, etc.), install the Heptabase [agent skill](SKILL.md):
 
 ```bash
 npx skills add madeyexz/heptabase-cli
