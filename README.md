@@ -38,20 +38,34 @@ This makes `/heptabase-cli` available as a slash command in your agent.
 
 ### Binary
 
-To run `heptabase` from anywhere, add it to your PATH:
+#### Use the prebuilt binary
 
 ```bash
-# Option 1: Symlink into /usr/local/bin
+git clone https://github.com/madeyexz/heptabase-cli.git
+cd heptabase-cli
 sudo ln -sf "$(pwd)/heptabase" /usr/local/bin/heptabase
-
-# Option 2: Copy it directly
-sudo cp heptabase /usr/local/bin/heptabase
-
-# Option 3: Add the repo directory to your PATH (add to ~/.zshrc or ~/.bashrc)
-export PATH="$HOME/Desktop/heptabase-cli:$PATH"
 ```
 
-Verify it works:
+#### Build from source
+
+Requires [Node.js](https://nodejs.org/) and [Bun](https://bun.sh/).
+
+```bash
+# 1. Authenticate with Heptabase (opens browser for OAuth)
+npx mcp-remote@latest https://api.heptabase.com/mcp --transport http-only
+
+# 2. Generate and compile
+npx mcporter@latest generate-cli \
+  --command 'npx -y mcp-remote@latest https://api.heptabase.com/mcp --transport http-only' \
+  --output ./heptabase-cli.ts \
+  --compile ./heptabase \
+  --description "Heptabase knowledge base CLI"
+
+# 3. Add to PATH
+sudo ln -sf "$(pwd)/heptabase" /usr/local/bin/heptabase
+```
+
+#### Verify
 
 ```bash
 heptabase --help
