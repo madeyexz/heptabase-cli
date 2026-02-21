@@ -1,6 +1,6 @@
 ---
 name: heptabase-cli
-description: Interact with your Heptabase knowledge base from the terminal. Use when the user wants to search notes, read cards or journals, save new notes, append to journals, or work with PDFs in Heptabase. Triggers on mentions of "heptabase", "whiteboard", "journal", "note card", or "knowledge base".
+description: Interact with user's Heptabase knowledge base from the terminal. Use when the user wants to search notes, read cards or journals, save new notes, append to journals, or work with PDFs in Heptabase. Triggers on mentions of "heptabase", "whiteboard", "journal", "note card", or "personal knowledge base".
 argument-hint: "[command] [args]"
 ---
 
@@ -12,15 +12,6 @@ A CLI that wraps the Heptabase MCP server. Search, read, and write to your Hepta
 
 - The `heptabase` binary must be on your PATH (see https://github.com/madeyexz/heptabase-cli)
 - First run opens a browser for OAuth login; tokens cache in `~/.mcp-auth/`
-
-## How to Use
-
-In most cases, just talk naturally (e.g., "Summarize my notes about X and save the result"). The agent will decide which commands to chain together.
-
-If the agent's behavior doesn't match what you expect, you can explicitly tell it which tool to use:
-- "Use save-to-note-card to save this answer as a new note card."
-- "Use append-to-journal to add this summary to today's journal."
-- "Use semantic-search-objects to search my existing notes about this topic first."
 
 ## Tools
 
