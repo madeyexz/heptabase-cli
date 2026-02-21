@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "CLI for your personal Heptabase knowledge base — search, read, and write notes from the terminal",
   "bin": {
-    "heptabase": "./heptabase-cli.ts"
+    "heptabase": "./bin/heptabase.js"
   },
   "dependencies": {
     "mcporter": "^0.7.3",
