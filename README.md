@@ -9,21 +9,44 @@ Ported from Official [Heptabase MCP](https://support.heptabase.com/en/articles/1
 
 Pick one:
 
-### Option 1: Standalone binary (recommended)
+### Option 1: Homebrew (recommended on macOS)
 
-Recommended for most users and for agent integrations. After install, use `heptabase` for all commands.
+```bash
+brew tap madeyexz/tap
+brew install madeyexz/tap/heptabase-cli
+heptabase --help
+```
+
+### Option 2: Standalone binary
+
+After install, use `heptabase` for all commands.
 
 Current release binary target: macOS arm64.
 If you are on another platform, use `bunx` or build from source.
 
 ```bash
+mkdir -p ~/.local/bin
+curl -L https://github.com/madeyexz/heptabase-cli/releases/latest/download/heptabase -o ~/.local/bin/heptabase
+chmod +x ~/.local/bin/heptabase
+~/.local/bin/heptabase --help
+```
+
+If `~/.local/bin` is not in your `PATH`, add it:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Optional system-wide install:
+
+```bash
 curl -L https://github.com/madeyexz/heptabase-cli/releases/latest/download/heptabase -o heptabase
 chmod +x heptabase
 sudo mv heptabase /usr/local/bin/
-heptabase --help
 ```
 
-### Option 2: `bunx` (no install, requires [Bun](https://bun.sh/))
+### Option 3: `bunx` (no install, requires [Bun](https://bun.sh/))
 
 ```bash
 bunx heptabase-cli --help
@@ -89,7 +112,7 @@ Supported output formats (`--output`): `text` (default), `json`, `markdown`, `ra
 
 ## Troubleshooting
 
-- `command not found: heptabase`: use `bunx heptabase-cli ...` or ensure `/usr/local/bin` is in your `PATH`.
+- `command not found: heptabase`: use `bunx heptabase-cli ...` or ensure `~/.local/bin` (or `/usr/local/bin`) is in your `PATH`.
 - Browser did not open for OAuth: copy the login URL from terminal and open it manually.
 - Need to re-authenticate: `rm -rf ~/.mcp-auth/` and run a command again.
 
