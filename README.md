@@ -13,8 +13,8 @@ npx mcp-remote@latest https://api.heptabase.com/mcp --transport http-only
 # 2. Generate and compile the CLI
 npx mcporter@latest generate-cli \
   --command 'npx -y mcp-remote@latest https://api.heptabase.com/mcp --transport http-only' \
-  --output ./heptabase-cli.ts \
-  --compile ./heptabase \
+  --output heptabase-cli.ts \
+  --compile heptabase \
   --description "Heptabase knowledge base CLI"
 ```
 
@@ -24,28 +24,49 @@ npx mcporter@latest generate-cli \
 - Tokens are cached in `~/.mcp-auth/` and auto-refresh
 - To force re-login: `rm -rf ~/.mcp-auth/`
 
+## Installation
+
+To run `heptabase` from anywhere, add it to your PATH:
+
+```bash
+# Option 1: Symlink into /usr/local/bin
+sudo ln -sf "$(pwd)/heptabase" /usr/local/bin/heptabase
+
+# Option 2: Copy it directly
+sudo cp heptabase /usr/local/bin/heptabase
+
+# Option 3: Add the repo directory to your PATH (add to ~/.zshrc or ~/.bashrc)
+export PATH="$HOME/Desktop/heptabase-cli:$PATH"
+```
+
+Verify it works:
+
+```bash
+heptabase --help
+```
+
 ## Usage
 
 ```bash
 # Search
-./heptabase search-whiteboards --keywords "topic1,topic2"
-./heptabase semantic-search-objects --queries "machine learning" --result-object-types card
+heptabase search-whiteboards --keywords "topic1,topic2"
+heptabase semantic-search-objects --queries "machine learning" --result-object-types card
 
 # Read
-./heptabase get-object --object-id <id> --object-type card
-./heptabase get-whiteboard-with-objects --whiteboard-id <id>
-./heptabase get-journal-range --start-date 2026-01-01 --end-date 2026-02-21
+heptabase get-object --object-id <id> --object-type card
+heptabase get-whiteboard-with-objects --whiteboard-id <id>
+heptabase get-journal-range --start-date 2026-01-01 --end-date 2026-02-21
 
 # Write
-./heptabase save-to-note-card --content "# Title\n\nBody text"
-./heptabase append-to-journal --content "Some entry"
+heptabase save-to-note-card --content "# Title\n\nBody text"
+heptabase append-to-journal --content "Some entry"
 
 # PDF
-./heptabase search-pdf-content --pdf-card-id <id> --keywords "term1,term2"
-./heptabase get-pdf-pages --pdf-card-id <id> --start-page-number 1 --end-page-number 5
+heptabase search-pdf-content --pdf-card-id <id> --keywords "term1,term2"
+heptabase get-pdf-pages --pdf-card-id <id> --start-page-number 1 --end-page-number 5
 
 # Output formats: text (default), json, markdown, raw
-./heptabase search-whiteboards --keywords "project" --output json
+heptabase search-whiteboards --keywords "project" --output json
 ```
 
 ## Letting Every Agent Use It
@@ -96,10 +117,10 @@ For agents or scripts that can't speak MCP, use the compiled binary directly:
 
 ```bash
 # Search from a shell script or agent
-./heptabase semantic-search-objects --queries "quarterly review" --result-object-types card --output json
+heptabase semantic-search-objects --queries "quarterly review" --result-object-types card --output json
 
 # Pipe into other tools
-./heptabase get-journal-range --start-date 2026-02-01 --end-date 2026-02-21 --output json | jq '.content'
+heptabase get-journal-range --start-date 2026-02-01 --end-date 2026-02-21 --output json | jq '.content'
 ```
 
 ## Available Commands
