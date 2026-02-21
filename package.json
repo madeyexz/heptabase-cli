@@ -1,0 +1,29 @@
+{
+  "name": "heptabase-cli",
+  "version": "0.1.0",
+  "description": "CLI for your personal Heptabase knowledge base — search, read, and write notes from the terminal",
+  "bin": {
+    "heptabase": "./heptabase-cli.ts"
+  },
+  "dependencies": {
+    "mcporter": "^0.7.3",
+    "commander": "^13.0.0"
+  },
+  "keywords": [
+    "heptabase",
+    "cli",
+    "mcp",
+    "knowledge-base",
+    "notes",
+    "journal"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madeyexz/heptabase-cli"
+  },
+  "homepage": "https://github.com/madeyexz/heptabase-cli#readme",
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

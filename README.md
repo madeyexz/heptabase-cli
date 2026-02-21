@@ -36,17 +36,23 @@ npx skills add madeyexz/heptabase-cli
 
 This makes `/heptabase-cli` available as a slash command in your agent.
 
-### Binary
+### Via bunx (no install needed)
 
-#### Use the prebuilt binary
+Requires [Bun](https://bun.sh/).
 
 ```bash
-git clone https://github.com/madeyexz/heptabase-cli.git
-cd heptabase-cli
-sudo ln -sf "$(pwd)/heptabase" /usr/local/bin/heptabase
+bunx heptabase-cli search-whiteboards --keywords "project"
 ```
 
-#### Build from source
+### Download binary from GitHub Releases
+
+```bash
+curl -L https://github.com/madeyexz/heptabase-cli/releases/latest/download/heptabase -o heptabase
+chmod +x heptabase
+sudo mv heptabase /usr/local/bin/
+```
+
+### Build from source
 
 Requires [Node.js](https://nodejs.org/) and [Bun](https://bun.sh/).
 
@@ -65,7 +71,7 @@ npx mcporter@latest generate-cli \
 sudo ln -sf "$(pwd)/heptabase" /usr/local/bin/heptabase
 ```
 
-#### Verify
+### Verify
 
 ```bash
 heptabase --help
@@ -117,6 +123,7 @@ For MCP setup with Claude Code, Cursor, ChatGPT, etc., see the [official Heptaba
 heptabase-cli/
 ├── heptabase          # Compiled standalone binary (bun)
 ├── heptabase-cli.ts   # Generated TypeScript source
+├── package.json       # npm package config (for bunx heptabase-cli)
 ├── SKILL.md           # Agent skill definition (skills.sh)
 ├── config/
 │   └── mcporter.json  # mcporter server configuration
