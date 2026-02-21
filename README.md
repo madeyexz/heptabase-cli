@@ -121,9 +121,12 @@ For MCP setup with Claude Code, Cursor, ChatGPT, etc., see the [official Heptaba
 
 ```
 heptabase-cli/
+├── bin/
+│   └── heptabase.js   # Node entry point (delegates to bun)
 ├── heptabase          # Compiled standalone binary (bun)
 ├── heptabase-cli.ts   # Generated TypeScript source
-├── package.json       # npm package config (for bunx heptabase-cli)
+├── package.json       # npm package (bunx heptabase-cli)
+├── .npmignore         # Excludes binary from npm tarball
 ├── SKILL.md           # Agent skill definition (skills.sh)
 ├── config/
 │   └── mcporter.json  # mcporter server configuration
