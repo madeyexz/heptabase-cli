@@ -12,6 +12,7 @@ A CLI that wraps the Heptabase MCP server. Search, read, and write to your Hepta
 
 - The `heptabase` binary must be on your PATH (see https://github.com/madeyexz/heptabase-cli)
 - First run opens a browser for OAuth login; tokens cache in `~/.mcp-auth/`
+- If OAuth fails or tokens expire: delete `~/.mcp-auth/` and re-run any command to re-authenticate
 
 ## Tools
 
@@ -26,7 +27,6 @@ Body text in markdown"
 ```
 
 - First h1 line becomes the card title
-- Great for: turning AI answers into permanent notes, saving outlines/plans/summaries, capturing ideas to organize later on a whiteboard
 
 ### 2. Append to journal (`append-to-journal`)
 
@@ -35,8 +35,6 @@ Adds content as new blocks to today's journal. Does NOT overwrite existing conte
 ```bash
 heptabase append-to-journal --content "Some journal entry"
 ```
-
-- Ideal for: daily reflections, quick logs ("summarize what I worked on today"), capturing ideas that belong in your daily record
 
 ### 3. Semantic search (`semantic-search-objects`)
 
@@ -48,8 +46,7 @@ Finds objects in your knowledge base using full-text + semantic (meaning-based) 
 heptabase semantic-search-objects --queries "machine learning,neural networks" --result-object-types "card,pdfCard"
 ```
 
-- Use when: asking about topics you've taken notes on, rediscovering related content, needing the AI to reason using your existing knowledge
-- Returns previews with titles and partial content
+- Returns previews with titles and partial content — if no results, try broader or synonym queries
 - Follow up with `get-object` for full content, or `search-whiteboards` to explore related whiteboards
 
 ### 4. Find whiteboards (`search-whiteboards`)
@@ -61,8 +58,6 @@ Searches whiteboards by name and keywords.
 heptabase search-whiteboards --keywords "project management,productivity"
 ```
 
-- Helps understand how your content is organized visually
-- Use when: looking for a specific project whiteboard, understanding workspace structure
 - Follow up with `get-whiteboard-with-objects` to see what's on them
 
 ### 5. Explore a whiteboard (`get-whiteboard-with-objects`)
@@ -74,7 +69,6 @@ heptabase get-whiteboard-with-objects --whiteboard-id <id>
 ```
 
 - Shows how ideas are grouped and connected
-- Use when: you want help understanding or reorganizing a board, need summaries based on how you've arranged things visually
 - Follow up with `get-object` for deeper reads on specific cards
 
 ### 6. Read full object content (`get-object`)
@@ -89,9 +83,8 @@ heptabase get-object --object-id <id> --object-type card
 ```
 
 - Returns full content including transcripts for video/audio cards
-- Check the `hasMore` flag to know if you have all the content
+- If `hasMore` is true, the response is truncated — re-request or narrow the scope
 - Do NOT use on pdfCard — too large. Use `search-pdf-content` + `get-pdf-pages` instead
-- Use when: you need detailed summaries, translations, or explanations of a specific note
 
 ### 7. Review journals by date range (`get-journal-range`)
 
@@ -102,7 +95,6 @@ heptabase get-journal-range --start-date 2026-01-01 --end-date 2026-03-01
 ```
 
 - Max 92 days (~3 months) per call. For longer periods, make multiple calls
-- Use when: reviewing past work, preparing retrospectives, summarizing what you wrote over a period
 
 ### 8. Search within a PDF (`search-pdf-content`)
 
@@ -134,7 +126,9 @@ heptabase get-pdf-pages --pdf-card-id <id> --start-page-number 1 --end-page-numb
 ### Discover → Read → Save
 
 1. `semantic-search-objects` — find relevant notes on a topic
+   - If no results: broaden queries or try synonyms
 2. `get-object` — read the full content
+   - If `hasMore` is true: re-request with narrower scope or accept partial content
 3. Reason, summarize, or answer based on the content
 4. `save-to-note-card` or `append-to-journal` — save the output back
 
@@ -147,6 +141,7 @@ heptabase get-pdf-pages --pdf-card-id <id> --start-page-number 1 --end-page-numb
 ### Review past journals
 
 1. `get-journal-range` — fetch entries for a period (split into 92-day chunks if needed)
+   - If range exceeds 92 days: split into sequential calls and merge results
 2. Summarize or analyze patterns across entries
 3. `append-to-journal` — add the summary to today's journal
 
@@ -154,7 +149,9 @@ heptabase get-pdf-pages --pdf-card-id <id> --start-page-number 1 --end-page-numb
 
 1. `semantic-search-objects --result-object-types pdfCard` — find the PDF
 2. `search-pdf-content` — locate relevant sections by keywords
+   - If no matches: try broader keywords or synonyms (BM25 uses fuzzy OR logic)
 3. `get-pdf-pages` — pull full pages for detailed reading
+   - For PDFs over 100 pages: confirm with the user before bulk retrieval
 4. `save-to-note-card` — save key takeaways as a new note
 
 ## Output Formats
