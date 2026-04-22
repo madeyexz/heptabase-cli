@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> this project is deprecated; as of 2026-04-22, Heptabase released an official CLI; read more in their [change log](https://wiki.heptabase.com/changelog)
+
 # Heptabase CLI
 
 CLI for your personal Heptabase knowledge base. Search whiteboards, read cards/journals/PDFs, and write notes from the terminal.
